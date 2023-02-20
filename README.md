@@ -48,11 +48,11 @@ $ exit
 # nodeコンテナに入る
 $ docker-compose run node bash
 
+# エラー回避
+$ npm install --save-dev cross-env
+
 # インストール
 $ npm install
 
 # ビルド
 $ npm run dev
-
-# エラーの場合、試してみる
-$ npm install --save-dev cross-env
