@@ -1,0 +1,41 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7.23
+    volumes:
+      - ./.tmp/db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: laravel
+  php:
+    build: ./docker/web
+    volumes:
+      - ./src:/var/www/html
+    working_dir: /var/www/html
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=secret
+    depends_on:
+      - db
+    ports:
+      - 8080:80
+    volumes:
+      - /sessions
+  node:
+    image: node:10.16.3
+    volumes:
+      - ./src:/home/src/app
+    working_dir: /home/src/app
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
