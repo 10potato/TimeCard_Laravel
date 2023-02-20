@@ -53,4 +53,6 @@ $ npm install
 
 # ビルド
 $ npm run dev
-```
+
+# エラーの場合、試してみる
+$ npm install --save-dev cross-env
