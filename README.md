@@ -57,3 +57,5 @@ $ npm install
 # ビルド
 $ npm run dev
 
+# 常時監視
+$ npm run watch
